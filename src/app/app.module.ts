@@ -12,6 +12,9 @@ import { TicketListComponent } from './pages/ticket-list/ticket-list.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { ParentCategoryComponent } from './pages/parent-category/parent-category.component';
 import { ChildCategoryComponent } from './pages/child-category/child-category.component';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { CommonModule, DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -28,7 +31,11 @@ import { ChildCategoryComponent } from './pages/child-category/child-category.co
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
+    CommonModule,
+    DatePipe
   ],
   providers: [],
   bootstrap: [AppComponent]

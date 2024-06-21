@@ -1,1 +1,62 @@
-<p>new-ticket works!</p>
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-header bg-success">New ticket</div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-3">
+            <div class="label">
+              <label for="">Select severity</label>
+              <select [(ngModel)]="newTicketObj.severity" class="form-select">
+                <option value="">Select</option>
+                <option>Low</option>
+                <option>Medium</option>
+                <option>High</option>
+              </select>
+            </div>
+            <div class="col-3">
+              <label for="">Select department</label>
+              <select [(ngModel)]="newTicketObj.deptId" class="form-select">
+                <option value="">Select</option>
+                @for (item of deptList; track $index) {
+                <option [value]="item.deptId">{{item.departmentName}}</option>
+                }
+              </select>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-3">
+              <label for="">Select category</label>
+              <select class="form-select"[(ngModel)]="selectedPCategory" (change)="onCategoryChange()">
+                <option value="">Select</option>
+                @for (item of pCategoryList; track $index) {
+                    <option [value]="item.categoryName">{{item.categoryName}}</option>
+                    }
+                </select>
+            </div>
+            <div class="col-3">
+              <label for="">Select child category</label>
+              <select [(ngModel)]="newTicketObj.childCategoryId" class="form-select">
+                <option value="">Select</option>
+                @for (item of filterCategory; track $index) {
+                    <option [value]="item.categoryId">{{item.categoryName}}</option>
+                    }
+              </select>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-6">
+                <label for="">Ticket details</label>
+                <textarea [(ngModel)]="newTicketObj.requestDetails" class="form-control"></textarea>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-6 text-center">
+                <button class="btn btn-success" (click)="onCreateTicket()">Create ticket</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
