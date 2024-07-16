@@ -1,1 +1,86 @@
-<p>ticket-list works!</p>
+
+<div class="row">
+    <div class="col-12 text-center">
+        <div class="btn-group">
+            <button type="button" (click)="changeMode('My tickets')" [class]="node == 'My tickets' ? 'btn btn-primary' : 'btn btn-primary'">My tickets</button>
+            <button type="button" (click)="changeMode('Assigned tickets')" [class]="node == 'Assigned tickets' ? 'btn btn-primary' : 'btn btn-primary'">Assigned tickets</button>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        <div class="table-responsive">
+            @if (node == 'My tickets'){
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Ticket ID</th>
+                            <th scope="col">Department</th>
+                            <th scope="col">Created by</th>
+                            <th scope="col">Contact number</th>
+                            <th scope="col">Created Date</th>
+                            <th scope="col">State</th>
+                            <th scope="col">Assigned to</th>
+                            <th scope="col">Category</th>
+                            <th scope="col">Sub category</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for(ticket of tickets; track $index){
+                            <tr *ngFor="let ticket of tickets">
+                                <td>{{ ticket.ticketNo }}</td>
+                                <td>{{ ticket.deptName }}</td>
+                                <td>{{ ticket.createdByEmployee }}</td>
+                                <td>{{ ticket.contactNo }}</td>
+                                <td>{{ ticket.createdData }}</td>
+                                <td>{{ ticket.state }}</td>
+                                <td>{{ ticket.assignedToEmployee }}</td>
+                                <td>{{ ticket.parentCategory }}</td>
+                                <td>{{ ticket.childCategory }}</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            } @else {
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">Ticket ID</th>
+                            <th scope="col">Department</th>
+                            <th scope="col">Created by</th>
+                            <th scope="col">Contact number</th>
+                            <th scope="col">Created Date</th>
+                            <th scope="col">State</th>
+                            <th scope="col">Assigned to</th>
+                            <th scope="col">Category</th>
+                            <th scope="col">Sub category</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for(ticket of tickets; track $index){
+                            <tr *ngFor="let ticket of tickets">
+                                <td>{{ ticket.ticketNo }}</td>
+                                <td>{{ ticket.deptName }}</td>
+                                <td>{{ ticket.employeeName }}</td>
+                                <td>{{ ticket.contactNo }}</td>
+                                <td>{{ ticket.createdData }}</td>
+                                <td>{{ ticket.state }}</td>
+                                <td>{{ ticket.assignedToEmployee }}</td>
+                                <td>{{ ticket.parentCategoryName }}</td>
+                                <td>{{ ticket.childCategoryName }}</td>
+                                <td>
+                                    @if(ticket.state == 'Assigned'){
+                                        <button class="btn btn-primary" (click)="changeStatus('Start', item.ticketId)">Start</button>
+                                    } @else if (ticket.state == 'In progress'){
+                                        <button class="btn btn-primary" (click)="changeStatus('Close', item.ticketId)">Close</button>
+                                    }
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+        </div>
+    </div>
+</div>

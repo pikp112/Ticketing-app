@@ -26,7 +26,7 @@ export class NewTicketComponent implements OnInit{
     const loggedUserData = localStorage.getItem('ticketUser');
     if(loggedUserData != null){
       const userData = JSON.parse(loggedUserData);
-      this.newTicketObj.employeeId = userData.demployeeId;
+      this.newTicketObj.employeeId = userData.employeeId;
     }
     this.getDept();
     this.getpCategory();
